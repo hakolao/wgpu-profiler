@@ -761,7 +761,8 @@ impl GpuProfiler {
                         .pool
                         .read_buffer
                         .slice(offset..(offset + (wgpu::QUERY_SIZE * 2) as u64))
-                        .get_mapped_range();
+                        .get_mapped_range()
+                        .unwrap();
                     let start_raw = u64::from_le_bytes(
                         buffer_slice[0..wgpu::QUERY_SIZE as usize]
                             .try_into()
